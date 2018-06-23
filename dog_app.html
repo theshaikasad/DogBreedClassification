@@ -12114,6 +12114,8 @@ Percentage of faces detected in human_files_short = 100 %
 <p><strong>Question 2:</strong> This algorithmic choice necessitates that we communicate to the user that we accept human images only when they provide a clear view of a face (otherwise, we risk having unneccessarily frustrated users!). In your opinion, is this a reasonable expectation to pose on the user? If not, can you think of a way to detect humans in images that does not necessitate an image with a clearly presented face?</p>
 <p><strong>Answer:</strong></p>
 <p>We suggest the face detector from OpenCV as a potential way to detect human images in your algorithm, but you are free to explore other approaches, especially approaches that make use of deep learning :).  Please use the code cell below to design and test your own face detection algorithm.  If you decide to pursue this <em>optional</em> task, report performance on each of the datasets.</p>
+<p><strong>My Answer:</strong></p>
+<p>To most extent I think its okay to use the face detector and my alternative approach would be to use a trained neural network that is able to classify humans</p>
 
 </div>
 </div>
@@ -12469,7 +12471,16 @@ Percentage of dogs detected in human_files_short = 0 %
 <p>We have imported some Python modules to get you started, but feel free to import as many modules as you need.  If you end up getting stuck, here's a hint that specifies a model that trains relatively fast on CPU and attains &gt;1% test accuracy in 5 epochs:</p>
 <p><img src="images/sample_cnn.png" alt="Sample CNN"></p>
 <p><strong>Question 4:</strong> Outline the steps you took to get to your final CNN architecture and your reasoning at each step.  If you chose to use the hinted architecture above, describe why you think that CNN architecture should work well for the image classification task.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
+<p>I chose the architecture given above because it has less params and is less prone to overfitting.</p>
 
 </div>
 </div>
@@ -12495,8 +12506,11 @@ Percentage of dogs detected in human_files_short = 0 %
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;same&quot;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;same&quot;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">))</span>
+<span class="c1"># I chose 3 convolutional layers because using more will increase the parameters and lead to overfitting</span>
+<span class="c1"># I used (5, 5) because https://www.quora.com/How-can-I-decide-the-kernel-size-output-maps-and-layers-of-CNN</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">GlobalAveragePooling2D</span><span class="p">())</span>
+<span class="c1">#The purpose of Global Average pooling is to sqeeze the activation.</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">133</span><span class="p">))</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
@@ -13170,6 +13184,7 @@ test_{network} = bottleneck_features['test']</code></pre>
 </code></pre>
 <p><strong>Question 5:</strong> Outline the steps you took to get to your final CNN architecture and your reasoning at each step.  Describe why you think the architecture is suitable for the current problem.</p>
 <p><strong>Answer:</strong></p>
+<p>I choose Inception because it gives state of the art results and that's why I think this will perform better than the scratch cnn and the VGG network.</p>
 
 </div>
 </div>
@@ -13184,6 +13199,8 @@ test_{network} = bottleneck_features['test']</code></pre>
 <span class="n">ownmodel</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">GlobalAveragePooling2D</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="n">train_InceptionV3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
 <span class="n">ownmodel</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">133</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
 <span class="n">ownmodel</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="c1"># I used the GAP to squeeze the activation map into a single big vectors</span>
+<span class="c1"># I could&#39;ve used more layers but I wanted to keep it simple with less parameters or it would take a lot of time to train the fully connected layer</span>
 </pre></div>
 
 </div>
@@ -13815,10 +13832,7 @@ You look like a in/056.Dachshund
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <p>I uploaded 6 photos of dogs of different breeds, photos of my 2 crushes and finally I uploaded my photo. Overall, I'm really satisfied with the results(It detected every dog breed correctly) but I think the human detector could be better. This project was so much fun!</p>
-<p>The ONLY improvement I would make:</p>
-<ul>
-<li>Train the human detector using transfer learning instead of using OpenCV, because it is specific to detecting faces and dogs also have face</li>
-</ul>
+<p>There are NO further improvements that I think I'd make</p>
 
 </div>
 </div>
